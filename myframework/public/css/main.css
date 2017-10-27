@@ -1,0 +1,13 @@
+body {
+    background: red;
+    position: relative;
+}
+
+footer {
+   text-align: center;
+   background: #FFF;
+   position: absolute;
+   left: 0;
+   right: 0;
+   bottom: 0;
+}
