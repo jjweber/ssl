@@ -19,7 +19,19 @@ class Router{
 
             break;
 
+            case "welcome":
+            
+                $this->App->startApp($urlPathParts);
+
+            break;
+
             case "navigation":
+            
+                $this->App->startApp($urlPathParts);
+
+            break;
+
+            case "about":
             
                 $this->App->startApp($urlPathParts);
 

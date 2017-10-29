@@ -1,10 +1,18 @@
+<?php
+    header("Content-type: text/css; charset: UTF-8");
+?>
+
 body {
+    text-align: center;
     background: red;
     position: relative;
 }
 
+a {
+    color: #000;
+}
+
 footer {
-   text-align: center;
    background: #FFF;
    position: absolute;
    left: 0;

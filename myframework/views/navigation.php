@@ -1,35 +1,71 @@
-<DOCTYPE html>
-<html>
-  <head>
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous" />
-    <link rel="stylesheet" href="../public/css/main.css" />
-  </head>
-  <body>
-    <header>
-        <nav class="navbar navbar-default">
-            <div class="container-fluid">
-                <!-- Brand and toggle get grouped for better mobile display -->
-                <div class="navbar-header">
-                    <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1" aria-expanded="false">
-                    <span class="sr-only">Toggle navigation</span>
-                    <span class="icon-bar"></span>
-                    <span class="icon-bar"></span>
-                    <span class="icon-bar"></span>
-                    </button>
-                    <a class="navbar-brand" href="#">My App</a>
-                </div>
+<!doctype html>
+<html lang="en">
+    <head>
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+        <meta name="description" content="">
+        <meta name="author" content="">
+        <link rel="icon" href="../../../../favicon.ico">
 
-                <!-- Collect the nav links, forms, and other content for toggling -->
-                <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
-                    <ul class="nav navbar-nav">
-                        <li><a href="../views/home.php">Home</a></li>
-                        <li><a href="api">Api</a></li>
-                    </ul>
-                </div><!-- /.navbar-collapse -->
-            </div><!-- /.container-fluid -->
+        <title>Jumbotron Template for Bootstrap</title>
+
+        <!-- Stylesheets  Here -->
+        <link href="/assets/css/bootstrap.min.css" rel="stylesheet" />
+            
+<!-- CSS Code Starts Here -->   
+        <style type='text/css'>
+            body{text-align: center; background: red; position: relative; padding-top: 3.5rem;}
+            a{color: #000;}
+            h1{color: #000;}
+            .jumbotron:first-of-type{margin-top: 3rem;}
+            footer{height: 3rem; margin-left: -15px; margin-right:-15px; padding-top: 0.55rem; background: #FFF;}
+        </style>
+<!-- CSS Code Ends Here -->
+
+    </head>
+
+    <body>
+
+        <nav class="navbar navbar-expand-md navbar-dark fixed-top bg-dark">
+            <a class="navbar-brand" href="#">Navbar</a>
+            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarsExampleDefault" aria-controls="navbarsExampleDefault" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+            </button>
+
+            <div class="collapse navbar-collapse" id="navbarsExampleDefault">
+
+
+<!-- PHP Code Starts Here -->
+                <?php
+                    // Creating opening unorder list element
+                    echo "<ul class=\"navbar-nav mr-auto\">";
+
+                    // Foreach menu item in the data array get the index and key
+                    foreach($data as $x => $x_value) {
+                        
+                        /* Create a list element with an anchor tag thats whos href 
+                        is the index and has appended value and closing tags. */
+                        echo "<li class=\"nav-item\"><a class=\"nav-link\" href=\"#\">".$x_value."</a></li>";
+                    }
+
+                    // Closing unorder list
+                    //echo "</ul";
+                ?>
+<!-- PHP Code Ends Here -->
+
+
+                <li class="nav-item dropdown">
+                    <a class="nav-link dropdown-toggle" href="http://example.com" id="dropdown01" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Dropdown</a>
+                    <div class="dropdown-menu" aria-labelledby="dropdown01">
+                        <a class="dropdown-item" href="#">Action</a>
+                        <a class="dropdown-item" href="#">Another action</a>
+                        <a class="dropdown-item" href="#">Something else here</a>
+                    </div>
+                </li>
+            </ul>
+            <form class="form-inline my-2 my-lg-0">
+                <input class="form-control mr-sm-2" type="text" placeholder="Search" aria-label="Search">
+                <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>
+            </form>
+            </div>
         </nav>
-    </header>
-
-<?php
-
-?>

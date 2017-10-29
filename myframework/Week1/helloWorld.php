@@ -1,5 +1,6 @@
 <?php
 
+// Section 1
 class helloClass{
     public function greeting() {
         echo "Hello World";

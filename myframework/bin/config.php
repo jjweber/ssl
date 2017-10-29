@@ -1,7 +1,7 @@
 <?php
 
 $config = array(
-'defaultController' => 'welcome',
+'defaultController' => 'controller',
 'dbname' => 'fruits',
 'dbpass' => 'root',
 'dbuser' => 'root',
@@ -12,6 +12,8 @@ $config = array(
 $str=$config["baseurl"]."/".$_SERVER['REQUEST_URI'];
 
 $urlPathParts = explode('/', ltrim(parse_url($str, PHP_URL_PATH), '/'));
+
+//var_dump($urlPathParts);
 
 include 'router.php';
 
