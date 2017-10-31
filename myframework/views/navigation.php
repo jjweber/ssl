@@ -11,17 +11,7 @@
 
         <!-- Stylesheets  Here -->
         <link href="/assets/css/bootstrap.min.css" rel="stylesheet" />
-            
-<!-- CSS Code Starts Here -->   
-        <style type='text/css'>
-            body{text-align: center; background: red; position: relative; padding-top: 3.5rem;}
-            a{color: #000;}
-            h1{color: #000;}
-            .jumbotron:first-of-type{margin-top: 3rem;}
-            footer{height: 3rem; margin-left: -15px; margin-right:-15px; padding-top: 0.55rem; background: #FFF;}
-        </style>
-<!-- CSS Code Ends Here -->
-
+        <link href="/assets/css/main.css" rel="stylesheet" />
     </head>
 
     <body>
@@ -42,14 +32,19 @@
 
                     // Foreach menu item in the data array get the index and key
                     foreach($data as $x => $x_value) {
-                        
+
+                        $className;
+                        if ($data2["pagename"]==$x) {
+                            $className = "nav-item active";
+                        } else {
+                            $className = "nav-item";
+                        }
+            
                         /* Create a list element with an anchor tag thats whos href 
                         is the index and has appended value and closing tags. */
-                        echo "<li class=\"nav-item\"><a class=\"nav-link\" href=\"#\">".$x_value."</a></li>";
+                        echo "<li class=\"$className\" ><a class=\"nav-link\" href=\"/controller/$x\">".$x_value."</a></li>";
+        
                     }
-
-                    // Closing unorder list
-                    //echo "</ul";
                 ?>
 <!-- PHP Code Ends Here -->
 
@@ -57,7 +52,7 @@
                 <li class="nav-item dropdown">
                     <a class="nav-link dropdown-toggle" href="http://example.com" id="dropdown01" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Dropdown</a>
                     <div class="dropdown-menu" aria-labelledby="dropdown01">
-                        <a class="dropdown-item" href="#">Action</a>
+                        <a class="dropdown-item" href="/welcome">Welcome Controller</a>
                         <a class="dropdown-item" href="#">Another action</a>
                         <a class="dropdown-item" href="#">Something else here</a>
                     </div>
