@@ -5,6 +5,27 @@ body{
     padding-top: 3.5rem;
 }
 
+#authForm {
+    text-align: left;
+    margin-bottom: 7.6rem;
+}
+
+
+#authUsernameLabel,
+#authPasswordLabel {
+    color: #FFF;
+    margin-top: 1.5rem;
+}
+
+#authCheckboxDiv {
+    color: #FFF;
+    text-align: left;
+}
+
+.pagedescription {
+    margin-top: 3rem;
+}
+
 a{
     color: #000;
 }
@@ -42,9 +63,41 @@ h1{
 }
 
 #apiPage,
-#aboutPage,
-#contactPage {
+#aboutPage {
     margin-bottom: 292px;
+}
+
+#contactForm {
+    margin-bottom: 3rem;
+}
+
+#contactForm {
+    text-align: left;
+}
+
+.invalid-feedback{
+    text-align: left;
+}
+
+#emailHelp {
+    color: #FFF;
+}
+
+#checkboxDiv,
+#radio1Div,
+#radio2Div {
+    text-align: left;
+}
+
+#feedbackInfo {
+    text-align: left;
+    background: #FFF;
+    padding: 1rem;
+    margin: 2rem 0 9rem 0;
+}
+
+#formSubmitBody h2 {
+    text-align: center;
 }
 
 footer{
