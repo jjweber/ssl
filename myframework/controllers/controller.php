@@ -106,8 +106,6 @@ class controller extends AppController{
             
         }else{
             
-            //alert("Invalid captcha");
-            
             header("Location: /controller/contact");
             
         }
@@ -118,7 +116,6 @@ class controller extends AppController{
     {   
         if (!@$_REQUEST["captcha_val"] == null) {
 
-            //var_dump($_REQUEST);
             if (@$_REQUEST["captcha_val"] == @$_SESSION["captcha_code"]) {
 
                 if (!@$_REQUEST["name"] == null AND filter_var($_POST["email"],FILTER_VALIDATE_EMAIL)) {

@@ -110,6 +110,10 @@ h1{
     text-align: left;
 }
 
+#formSubmitBody {
+    margin: 11.5rem auto;
+}
+
 #feedbackInfo {
     text-align: left;
     background: #FFF;
