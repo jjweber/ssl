@@ -10,7 +10,7 @@ $(function () {
 });
 
 // For Authorization Page
-if (pathname == "/controller/index") {
+if (pathname == "/welcome/index") {
     
     (function() {
         'use strict';
@@ -32,7 +32,7 @@ $("#ajaxAuthBtn").click(function(){
     $.ajax({
 
         method: "POST",
-        url: "/controller/ajaxAuthPars",
+        url: "/welcome/ajaxAuthPars",
         data: { username: $("#authUName").val(), password: $("#authPass").val()},
         success: function(msg) {
             if(msg=="welcome"){
@@ -65,17 +65,21 @@ if (pathname == "/controller/contact") {
 };
 
 $("#ajaxBtn").click(function(){
-    $.ajax({
+        $.ajax({
 
-        method: "POST",
-        url: "/controller/ajaxPars",
-        data: { name: $("#namefield").val(), email: $("#email").val(), phone: $("#phone").val(), check: $("#checkbox").val(), select: $("#formSelect").val(), text: $("#textfield").val(), radio: $("#radio").val()},
-        success: function(msg) {
-            if(msg=="welcome"){
-                alert("Form successfully submitted!");
-            }else{
-                alert("Sorry something isn't right! Please check for errors and try again!");
+            method: "POST",
+            url: "/controller/ajaxPars",
+            data: { captcha_val: $("#captcha").val(), name: $("#namefield").val(), email: $("#email").val(), phone: $("#phone").val(), check: $("#checkbox").val(), select: $("#formSelect").val(), text: $("#textfield").val(), radio: $("#radio").val()},
+            success: function(msg) {
+                if(msg=="welcome"){
+                    alert("Form successfully submitted!");
+                }else if(msg=="bad login"){
+                    alert("Sorry something isn't right! Please check for errors and try again!");
+                } else if(msg=="Invalid captcha") {
+                    alert("Invalid Captcha! You Must Be A Robot! Resetting form!");
+                } else {
+                    alert("Please provide the code seen in image at top of form!");
+                }
             }
-        }
-    });
+        });
 });

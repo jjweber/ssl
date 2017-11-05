@@ -10,6 +10,9 @@ body{
     margin-bottom: 7.6rem;
 }
 
+.signedinLinks {
+    color: #FFF;
+}
 
 #authUsernameLabel,
 #authPasswordLabel {
@@ -65,6 +68,24 @@ h1{
 #apiPage,
 #aboutPage {
     margin-bottom: 292px;
+}
+
+.pagedescription {
+    margin-bottom: 2rem;
+}
+
+#captchaField {
+    text-align: center;
+    margin: 1rem 0;
+}
+
+#captchaField label,
+#captchaField input {
+    display: block;
+}
+
+#captchaField input {
+    margin: .5rem auto;
 }
 
 #contactForm {

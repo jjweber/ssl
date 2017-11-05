@@ -5,10 +5,10 @@
     <h1>Login</h1>
 </div>
 
-<form id="authForm" method="POST" novalidate>
+<form id="authForm" action="/auth/login" method="POST" novalidate>
     <div id="authUsernameDiv" class="form-group">
         <label id="authUsernameLabel" for="authUName">Username</label>
-        <input type="text" name="authUName" class="form-control" id="authUName" placeholder="Enter Username" required>
+        <input type="text" name="username" class="form-control" id="authUName" placeholder="Enter Username" required>
         <div class="invalid-feedback" style="color: #FFF">
         Please provide a username.
       </div>
@@ -21,7 +21,7 @@
     </div>
     <div id="authPasswordDiv" class="form-group">
         <label id="authPasswordLabel" for="authPass">Password</label>
-        <input type="password" name="authPass" class="form-control" id="authPass" placeholder="Password" required>
+        <input type="password" name="password" class="form-control" id="authPass" placeholder="Password" required>
         <div class="invalid-feedback" style="color: #FFF">
         Please provide a valid password.
       </div>

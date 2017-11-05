@@ -7,8 +7,68 @@
 </div>
 
 
+<?
+
+    function create_image($cap)
+
+    {
+        unlink("./assets/images/image1.png");
+
+        global $image;
+
+        $image = imagecreatetruecolor(200, 50) or die("Cannot Initialize new GD image stream");
+
+        $background_color = imagecolorallocate($image, 255, 255, 255);
+
+        $text_color = imagecolorallocate($image, 0, 255, 255);
+
+        $line_color = imagecolorallocate($image, 64, 64, 64);
+
+        $pixel_color = imagecolorallocate($image, 0, 0, 255);
+
+        imagefilledrectangle($image, 0, 0, 200, 50, $background_color);
+
+        for ($i = 0; $i < 3; $i++) {
+
+            imageline($image, 0, rand() % 50, 200, rand() % 50, $line_color);
+
+        }
+
+        for ($i = 0; $i < 1000; $i++) {
+
+            imagesetpixel($image, rand() % 200, rand() % 50, $pixel_color);
+
+        }
+
+        $text_color = imagecolorallocate($image, 0, 0, 0);
+
+        ImageString($image, 22, 30, 22, $cap, $text_color);
+
+        /************************************/
+        $_SESSION["captcha_code"] = $cap;
+
+        /*************************************/
+
+        imagepng($image, "./assets/images/image1.png");
+
+    }
+
+    create_image($data["cap"]);
+
+    echo "<img src='/assets/images/image1.png'>";
+
+?>
+
+
 <!-- Form Starts Here -->
 <form id="contactForm" action="/controller/contactRecv" method="POST" novalidate>
+    <div id="captchaField">
+        <label for="captcha">Enter Captcha <small style="color: yellow">*required</small></label>
+        <input name="captcha" type="captcha" id="captcha"  placeholder="Enter code above" required>
+        <div class="invalid-feedback" style="color: yellow">
+        * Please provide the code you see in the image above.
+        </div>
+    </div>
 
     <div class="form-group" id="namefieldDiv">
         <label for="namefield">Name <small style="color: yellow">*required</small></label>
@@ -66,8 +126,7 @@
     </div>
 
     <button id="ajaxBtn" type="submit" class="btn btn-primary">Submit</button>
-    <input type="button" class="btn btn-primary" value="Ajax Submit">
-
+    <!--<input type="button" class="btn btn-primary" value="Ajax Submit">-->
 </form>
 
 

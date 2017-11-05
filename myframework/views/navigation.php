@@ -17,7 +17,7 @@
     <body>
 
         <nav class="navbar navbar-expand-md navbar-dark fixed-top bg-dark">
-            <a class="navbar-brand" href="/controller/index">Navbar</a>
+            <a class="navbar-brand" href="/welcome/index">Navbar</a>
             <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarsExampleDefault" aria-controls="navbarsExampleDefault" aria-expanded="false" aria-label="Toggle navigation">
             <span class="navbar-toggler-icon"></span>
             </button>
@@ -58,9 +58,32 @@
                     </div>
                 </li>
             </ul>
+            
+        <span style="color: red"><? echo @$_REQUEST["msg"]?$_REQUEST["msg"]:''; ?></span>
+            <?php 
+            
+            if (@$_SESSION["loggedin"] && @$_SESSION["loggedin"]==1) {?>
+                <form class="form-inline my-2 my-lg-0">
+                    <a href="/profile" class="signedinLinks">Profile/</a>
+                    <a href="/auth/logout" class="signedinLinks">Logout</a>
+                </form>
+            <? } else { ?>
+                <form class="form-inline my-2 my-lg-0" role="search" method="post" action="/auth/login">
+                    <div class="from-group">
+                        <input type="text" class="form-control" name="username" placeholder="Username">
+                    </div>
+                    <div class="from-group">
+                        <input type="text" class="form-control" name="password" placeholder="Password">
+                    </div>
+                    <button type="submit" class="btn btn-default">Sign In</button>
+                </form>
+            <? } ?>
+
+            <!--
             <form class="form-inline my-2 my-lg-0">
                 <input class="form-control mr-sm-2" type="text" placeholder="Search" aria-label="Search">
                 <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>
             </form>
+            -->
             </div>
         </nav>
