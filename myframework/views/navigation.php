@@ -31,10 +31,10 @@
                     echo "<ul class=\"navbar-nav mr-auto\">";
 
                     // Foreach menu item in the data array get the index and key
-                    foreach($data as $x => $x_value) {
+                    foreach( $data as $x => $x_value ) {
 
                         $className;
-                        if ($data2["pagename"]==$x) {
+                        if ( $data2[ "pagename" ] == $x ) {
                             $className = "nav-item active";
                         } else {
                             $className = "nav-item";
@@ -43,47 +43,66 @@
                         /* Create a list element with an anchor tag thats whos href 
                         is the index and has appended value and closing tags. */
                         echo "<li class=\"$className\" ><a class=\"nav-link\" href=\"/controller/$x\">".$x_value."</a></li>";
-        
+
                     }
+                    
+                    if ( @$_SESSION[ "loggedin" ] && @$_SESSION[ "loggedin" ] == 1 ) {
                 ?>
 <!-- PHP Code Ends Here -->
 
 
-                <li class="nav-item dropdown">
-                    <a class="nav-link dropdown-toggle" href="http://example.com" id="dropdown01" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Dropdown</a>
-                    <div class="dropdown-menu" aria-labelledby="dropdown01">
-                        <a class="dropdown-item" href="/welcome">Welcome Controller</a>
-                        <a class="dropdown-item" href="#">Another action</a>
-                        <a class="dropdown-item" href="#">Something else here</a>
-                    </div>
-                </li>
-            </ul>
+                    <li class="nav-item dropdown">
+                        <a class="nav-link dropdown-toggle" href="http://example.com" id="dropdown01" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Dropdown</a>
+                        <div class="dropdown-menu" aria-labelledby="dropdown01">
+                            <a class="dropdown-item" href="/welcome">Welcome Controller</a>
+                            <a class="dropdown-item" href="#">Another action</a>
+                            <a class="dropdown-item" href="#">Something else here</a>
+                        </div>
+                    </li>
+                <?php } ?>
+                </ul>
             
-        <span style="color: red"><? echo @$_REQUEST["msg"]?$_REQUEST["msg"]:''; ?></span>
-            <?php 
+                <span style="color: red" ><? echo @$_REQUEST[ "msg" ] ? $_REQUEST[ "msg" ] : ''; ?></span>
             
-            if (@$_SESSION["loggedin"] && @$_SESSION["loggedin"]==1) {?>
-                <form class="form-inline my-2 my-lg-0">
-                    <a href="/profile" class="signedinLinks">Profile/</a>
-                    <a href="/auth/logout" class="signedinLinks">Logout</a>
-                </form>
-            <? } else { ?>
-                <form class="form-inline my-2 my-lg-0" role="search" method="post" action="/auth/login">
-                    <div class="from-group">
-                        <input type="text" class="form-control" name="username" placeholder="Username">
-                    </div>
-                    <div class="from-group">
-                        <input type="text" class="form-control" name="password" placeholder="Password">
-                    </div>
-                    <button type="submit" class="btn btn-default">Sign In</button>
-                </form>
-            <? } ?>
+                <?php 
+                
+                    if ( @$_SESSION[ "loggedin" ] && @$_SESSION[ "loggedin" ] == 1 ) {     
+                        ?>
+                        <form class="form-inline my-2 my-lg-0">
+                            <?php 
+                                echo "<ul class=\"navbar-nav mr-auto\">";
+                                $className2;
+                                if ( $data2[ "pagename" ] == "profile" ) {
+                                    $className2 = "nav-item active";
+                                } else {
+                                    $className2 = "nav-item";
+                                }
+                                echo "<li class=\"$className2\"><a href=\"/profile\" class=\"nav-link signedinLinks profileLink\">Profile</a></li>";
+                            ?>
+                            
+                            <li class="nav-item" ><a href="/auth/logout" class="nav-link signedinLinks">Logout</a></li>
+                            </ul>
+                        </form>
+                    <? } else { ?>
+                        <form class="form-inline my-2 my-lg-0" role="search" method="post" action="/auth/login">
+                            <div class="from-group">
+                                <input type="text" class="form-control" name="username" id="navUsername" placeholder="Username">
+                            </div>
+                            <div class="from-group">
+                                <input type="text" class="form-control" name="password" id="navPass" placeholder="Password">
+                            </div>
+                            <button type="submit" id="ajaxNavAuthBtn" class="btn btn-default">Sign In</button>
+                        </form>
+                    <? }                 
+                    
+                ?>
 
-            <!--
-            <form class="form-inline my-2 my-lg-0">
-                <input class="form-control mr-sm-2" type="text" placeholder="Search" aria-label="Search">
-                <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>
-            </form>
-            -->
+                <!--
+                <form class="form-inline my-2 my-lg-0">
+                    <input class="form-control mr-sm-2" type="text" placeholder="Search" aria-label="Search">
+                    <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>
+                </form>
+                -->
+
             </div>
         </nav>

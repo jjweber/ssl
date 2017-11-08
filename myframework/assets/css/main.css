@@ -10,8 +10,8 @@ body{
     margin-bottom: 7.6rem;
 }
 
-.signedinLinks {
-    color: #FFF;
+.profileLink {
+    border-right: 1px solid #FFF;
 }
 
 #authUsernameLabel,
@@ -35,6 +35,44 @@ a{
 
 .navbar-dark .navbar-nav .nav-link:focus, .navbar-dark .navbar-nav .nav-link:hover {
     color: #FFF;
+}
+
+#profileData {
+    margin: 5rem auto 24.5rem auto;
+}
+
+.header {
+    background: #FFF;
+    padding: 2rem;
+}
+
+#profileLeft,
+#profileImgDiv {
+    margin-bottom: 2rem;
+}
+
+#profileLeft,
+#profileRight,
+#profileImgDiv,
+#profileBtnsDiv {
+    float: left;
+}
+
+#profileImg {
+    width: 100%; 
+    float: left;
+}
+
+#profileFileBtn {
+    background: #FFF;
+    margin: 3px;
+}
+#profileFileBtn:hover {
+    cursor: pointer;
+    background: rgb(230, 221, 221);
+}
+#profileUpdateBtn:hover {
+    cursor: pointer;
 }
 
 #bodyCarousel{

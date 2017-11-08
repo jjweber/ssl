@@ -9,9 +9,13 @@
 <!-- PHP Code Starts Here -->
             <?php
 
+
+            
                 class helloClass{
                     public function greeting() {
-                        echo "Hello World from the Body!";
+                        
+                        $uname = $_SESSION[ 'uname' ];
+                        echo "Hello $uname from the Body!";
                     }
                 }
 
