@@ -42,7 +42,16 @@
             
                         /* Create a list element with an anchor tag thats whos href 
                         is the index and has appended value and closing tags. */
-                        echo "<li class=\"$className\" ><a class=\"nav-link\" href=\"/controller/$x\">".$x_value."</a></li>";
+                        echo "<li class=\"$className\" ><a class=\"nav-link\" href=\"";
+
+                        // Check if page is equal to about. if match go to about controller
+                        if ( $x == 'about') {
+                            echo "/about";
+                        } else {
+                            echo "/controller/$x";
+                        }
+
+                        echo "\">".$x_value."</a></li>";
 
                     }
                     
@@ -54,7 +63,7 @@
                     <li class="nav-item dropdown">
                         <a class="nav-link dropdown-toggle" href="http://example.com" id="dropdown01" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Dropdown</a>
                         <div class="dropdown-menu" aria-labelledby="dropdown01">
-                            <a class="dropdown-item" href="/welcome">Welcome Controller</a>
+                            <a class="dropdown-item" href="/about">Welcome Controller</a>
                             <a class="dropdown-item" href="#">Another action</a>
                             <a class="dropdown-item" href="#">Something else here</a>
                         </div>

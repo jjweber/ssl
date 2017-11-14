@@ -2,36 +2,48 @@
 
 class auth extends AppController{
 
-    public function __construct() {
-    
+    public function __construct($parent) {
 
+        $this->parent = $parent;
     }
 
     public function login() {
 
 
-        $user = preg_split( '/\r\n|\n|\r/', trim( file_get_contents( './assets/text_files/login_file.txt' )));
-        foreach ( $user as $x => $x_value ) {               
+        if ( $_REQUEST[ "username" ] && $_REQUEST[ "password" ] ) {
+            echo $_REQUEST[ "password" ]."<br>";
 
-            list( $Username, $Password, $someMessage ) = preg_split( '/\|+/', $x_value );
 
-            if ( $_REQUEST[ "username" ] && $_REQUEST[ "password" ] ) {
-                
-                if ( $_REQUEST[ "username" ] == $Username && $_REQUEST[ "password" ] == $Password ) {
-                    $_SESSION[ "loggedin" ] = 1;
+            $userEmail = $_REQUEST[ "username" ];
+            $userPWD = sha1($_REQUEST[ "password" ]);
 
-                    $_SESSION[ 'uname' ] = $Username;
-                    $_SESSION[ 'upass' ] = $Password;   
-                    $_SESSION[ 'umessage' ] = $someMessage;                       
-
-                    header( "Location: /controller/greetingPage" );
-                } else {
-                    header( "Location: /welcome/index?msg=Bad Login" );
-                }
-            } else {
-                header( "Location: /welcome/index?msg=Bad Login" );            
+            try {
+                $data = $this->parent->getModel( "users" )->select(
+                    "select * from users where email = ?",
+                    array($userEmail));
+            } catch (PDOException $e) {
+                echo $e->getMessage()."<br>";
+                die();
             }
+
+
+            if($data) {
+
+                $_SESSION[ "loggedin" ] = 1;
+
+                $_SESSION[ 'uname' ] = $_REQUEST[ "username" ];
+                //$_SESSION[ 'upass' ] = $Password;
+                //$_SESSION[ 'umessage' ] = $someMessage;
+
+                header( "Location: /controller/greetingPage" );
+            } else {
+                header( "Location: /welcome/index?msg=Bad Login" );
+            }
+
+        } else {
+            header( "Location: /welcome/index?msg=Bad Login" );
         }
+        
     }
 
 

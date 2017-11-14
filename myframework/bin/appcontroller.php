@@ -9,7 +9,16 @@ class AppController{
 
 
         //$this->db = new PDO("mysql:dbname=".$config["dbname"].";", $config["dbuser"], $config["dbpass"]);
-        
+
+        try {
+            $this->db = new PDO("mysql:dbname=".$config["dbname"].";", $config["dbuser"], $config["dbpass"]);
+            $this->db->setAttribute( PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION );
+        } catch (PDOException $e) {
+            file_put_contents('PDOErrors.txt', $e->getMessage(), FILE_APPEND)."<br>";
+            die();
+        }
+
+
         $this->urlPathParts = $urlPathParts;
 
         if ($urlPathParts[0]) {           
@@ -50,10 +59,11 @@ class AppController{
 
     }
 
-    public function getModel() {
+    public function getModel($page) {
 
-        // add this later
-        // get then pass data to that page(view)
+        require_once './models/'.$page.".php";
+        $model = new $page($this);
+        return $model;
         
     }
 

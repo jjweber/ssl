@@ -10,6 +10,10 @@ body{
     margin-bottom: 7.6rem;
 }
 
+#authForm .invalid-feedback {
+    color: yellow;
+}
+
 .profileLink {
     border-right: 1px solid #FFF;
 }

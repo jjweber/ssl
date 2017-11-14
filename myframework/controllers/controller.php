@@ -35,7 +35,6 @@ class controller extends AppController{
         $this->getNav( "api" );
         $this->getView( "api" );
         $this->getView( "footer" );
-
     }
 
     public function gallery() {

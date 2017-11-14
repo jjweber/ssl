@@ -1,40 +1,147 @@
-<div id="mainBody" class="container">
+<?php ob_start();  ?>
+<div class="container" style="margin-bottom: 2rem">
 
-<!-- Jumbotron Starts Here -->
-<div id="aboutPage" class="jumbotron">
-        <h1>About page here!</h1>
-        <p>This example is a quick exercise to illustrate how the default, static navbar and fixed to top navbar work. It includes the responsive CSS and HTML, so it also adapts to your viewport and device.</p>
-        <p>
-<!-- Button trigger modal -->
-        <button type="button" class="btn btn-lg btn-primary" data-toggle="modal" data-target="#exampleModalLong">
-            Open Modal &raquo;
-        </button>
-        </p>
+    <div class="starter-template" style="background: #FFF; margin: 6rem auto 14.5rem auto; padding: 2rem">
+        <h1>Fruit List</h1>
+        <!--<p class="btn btn-success"><a href="/about/showAddForm">Add New</a></p>-->
+        <p class="btn btn-success" data-toggle="modal" data-target="#addFruitModal"><a >Add New</a></p>
+
+        <table class="table">
+        <?php
+
+            foreach ($data as $fruit) {
+
+                echo "<br><tr>";
+                echo "<td><h3 style='float: left'>".$fruit["name"]."</h3></td>";
+                echo "<td><button type=\"button\" id='editBtns' class=\"btn btn-primary modalShow\" data-toggle=\"modal\" href='#edit?name=".$fruit["name"]."' style='margin-right: 1rem'>Edit</button>";
+                echo "<a href='/about/deleteAction?name=".$fruit["name"]."' role='button' class=\"btn btn-danger\">Delete</a><br></td>";
+                echo "</tr>";
+
+
+            }
+
+        ?>
+        </table>
     </div>
 
-</div> <!-- /container end -->
+</div><!-- /.container  -->
+
 
 <!-- Modal Starts Here -->
-<div class="modal fade" id="exampleModalLong" tabindex="-1" role="dialog" aria-labelledby="exampleModalLongTitle" aria-hidden="true">
+<div class="modal fade" id="addFruitModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLongTitle" aria-hidden="true">
     <div class="modal-dialog" role="document">
         <div class="modal-content">
             <div class="modal-header">
-                <h5 class="modal-title" id="exampleModalLongTitle">Modal title</h5>
+                <h5 class="modal-title" id="exampleModalLongTitle">Add A Fruit</h5>
                 <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                     <span aria-hidden="true">&times;</span>
                 </button>
             </div>
             <div class="modal-body">
-                <h5>Popover in a modal</h5>
-                <p>This <a href="#" role="button" class="btn btn-secondary popover-test" data-toggle="popover" title="Popover title" data-content="Popover body content is set in this attribute.">button</a> triggers a popover on click.</p>
-                <hr>
-                <h5>Tooltips in a modal</h5>
-                <p><a href="#" class="tooltip-test" data-toggle="tooltip" title="Tooltip">This link</a> and <a href="#" class="tooltip-test" data-toggle="tooltip" title="Tooltip">that link</a> have tooltips on hover.</p>
+                <div class="container">
+
+                    <div class="starter-template">
+
+                        <h1>Add A Fruit</h1>
+
+                        <form action="/about/addAction" method="POST">
+
+                            <input type="text" name="name" placeholder="Bananas ?" />
+
+                            <input type="submit" />
+
+
+                        </form>
+
+                    </div>
+
+
+
+                </div><!-- ./container -->
             </div>
             <div class="modal-footer">
                 <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-                <button type="button" class="btn btn-primary">Save changes</button>
-            </div>                                              
+            </div>
+        </div>
+    </div>
+</div>
+
+
+
+<!-- Modal Starts Here -->
+
+
+<div class="modal hide fade edit" id="edit<?php $fruit["name"]  ?>" tabindex="-1" role="dialog" aria-labelledby="exampleModalLongTitle" aria-hidden="true">&times;
+            <div class="modal-dialog" role="document">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h5 class="modal-title" id="exampleModalLongTitle">Edit Fruit</h5>
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                            <span aria-hidden="true">&times;</span>
+                        </button>
+                    </div>
+                <div class="modal-body">
+                    <div class="container">
+
+                        <div class="starter-template">
+
+                            <h1>Edit Fruit</h1>
+
+
+
+                            <form action="/about/updateAction" method="POST">
+
+                                <input type="hidden" name="id" id="id" value="<?php echo $fruit['id']; ?>" />
+
+
+                                <input type="text" name="newName" id="name" value="<?php echo $fruit['name']; ?>" />
+
+                                <input type="submit" />
+
+
+                            </form>
+
+                        </div>
+
+                    </div><!-- ./container -->
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancel</button>
+                </div>
+            </div>
+            </div>
+</div>
+
+
+
+<div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="exampleModalLabel">New message</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+
+                <h1>Edit Fruit</h1>
+
+                <form action="/about/updateAction" method="POST">
+
+                    <input type="hidden" name="id" id="id" />
+
+
+                    <input type="text" name="newName" id="newName" />
+
+                    <button type="submit" class="btn btn-primary">Submit</button>
+
+
+                </form>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancel</button>
+            </div>
         </div>
     </div>
 </div>

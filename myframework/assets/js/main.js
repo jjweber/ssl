@@ -98,3 +98,31 @@ $( "#ajaxBtn" ).click(function(){
             }
         });
 });
+
+
+
+if ( pathname == "/about" ) {
+
+    $('#exampleModal').on('show.bs.modal', function (event) {
+        var button = $(event.relatedTarget) // Button that triggered the modal
+        var recipient = button.data('whatever') // Extract info from data-* attributes
+        // If necessary, you could initiate an AJAX request here (and then do the updating in a callback).
+        // Update the modal's content. We'll use jQuery here, but you could use a data binding library or other methods instead.
+        var modal = $(this)
+        modal.find('.modal-title').text('Edit Fruit')
+        modal.find('.modal-body input').val(recipient)
+    })
+
+
+
+    $('.modalShow').click(function(event){
+        event.preventDefault();
+        var e = $(this);
+        var title = e.data('title');
+        var body = e.data('value');
+        $("#edit").modal("show");
+        $('#modal-title').html(title);
+        $('#modal-body').html(body);
+    });
+
+}
