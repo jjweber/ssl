@@ -52,6 +52,21 @@ class AppController{
 
     }
 
+
+
+    public function getNav( $pagename, $data = array() )
+    {
+        $menuItems = array(
+            "greetingPage" => "Home",
+            "api" => "Api",
+            "gallery" => "Gallery",
+            "about" => "About",
+            "contact" => "Contact"
+        );
+
+        $this->getView( "navigation", $menuItems, array( "pagename" => "$pagename" ));
+    }
+
     public function getView($page, $data=array(), $data2=array()) {
 
         

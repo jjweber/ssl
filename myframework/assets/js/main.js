@@ -114,15 +114,102 @@ if ( pathname == "/about" ) {
     })
 
 
+    $(document).ready(function() {
+        $('.modalShow').click(function(event){
 
-    $('.modalShow').click(function(event){
-        event.preventDefault();
-        var e = $(this);
-        var title = e.data('title');
-        var body = e.data('value');
-        $("#edit").modal("show");
-        $('#modal-title').html(title);
-        $('#modal-body').html(body);
+            // console.log("DATA CHECK: ", data);
+
+            event.preventDefault();
+            var e = $(this);
+            var id = e.attr('data-edit_id');
+
+            var fruit = getFruitDetailsById(id);
+            // console.log("Here are your fruit details: ", fruit);
+
+            var title = e.data('title');
+            var body = e.data('value');
+            $('#modal-title').html(title);
+            $('#modal-body').html(body);
+            $("#edit").modal("show");
+
+            $("#id").val(fruit.id);
+            $("#name").val(fruit.name);
+        });
     });
 
+
+
+    // return the fruit object with id matching the id passed to it
+    function getFruitDetailsById(id) {
+        var idToFind = parseInt(id);
+        // console.log("Looking for fruit with id:", idToFind);
+
+        for(var i = 0; i < data.length; i++) {
+            var checkId = parseInt(data[i]['id']);
+            // console.log("NEW. Checking fruit id of:", checkId);
+            if(checkId == idToFind) return data[i];
+        }
+
+        return -1;
+    }
+
+
+
+    $(document).ready(function() {
+        $(".open-details-modal").click(function(event) {
+            event.preventDefault();
+            var e = $(this);
+            var title = e.attr('data-fruit_id')
+            var body = e.attr('data-fruit_name');
+            console.log("Hello")
+            $(".fruitName2").val(body);
+            $(".fruitVendor2").val(title);
+            $("#detailsModal").modal("show");
+
+        });
+    });
+
+
+    $( "#ok" ).click(function(){
+
+
+        var ID=$(this).attr('id');
+        var input=$("#subject_"+ID).val();
+        var dataString = {id: ID, value: input};
+        $("#span_"+ID).html(input);
+
+        if(input.length>0) {
+
+            $.ajax({
+
+                method: "POST",
+                url: "/about/updateAction2",
+                data: dataString,
+                dataType: 'json',
+                cache: false,
+                success: function (msg) {
+                    $("#span_" + ID).html(span);
+                }
+            });
+        }
+    });
 }
+
+
+if ( pathname == "/galleryApi/showYouTubeApi" ) {
+
+
+    //$("#<?php echo $videoList->items[0]->snippet->resourceId->videoId; ?>").addClass('selected');
+
+    function switchVideo(videoId) {
+        $(".video-container iframe").attr('src', 'https://www.youtube.com/embed/' + videoId);
+        $(".videoSelected").removeClass('selected');
+        $("#vid_" + videoId).addClass('selected');
+    }
+
+
+}
+
+
+
+

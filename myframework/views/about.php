@@ -1,4 +1,13 @@
 <?php ob_start();  ?>
+
+<script>
+    // then echo it into the js/html stream
+    // and assign to a js variable
+    data = <?php echo json_encode($data); ?>;
+
+</script>
+
+
 <div class="container" style="margin-bottom: 2rem">
 
     <div class="starter-template" style="background: #FFF; margin: 6rem auto 14.5rem auto; padding: 2rem">
@@ -8,21 +17,26 @@
 
         <table class="table">
         <?php
-
             foreach ($data as $fruit) {
-
                 echo "<br><tr>";
                 echo "<td><h3 style='float: left'>".$fruit["name"]."</h3></td>";
-                echo "<td><button type=\"button\" id='editBtns' class=\"btn btn-primary modalShow\" data-toggle=\"modal\" href='#edit?name=".$fruit["name"]."' style='margin-right: 1rem'>Edit</button>";
+                echo "<td><button type=\"button\" id='editBtns' class=\"btn btn-primary modalShow\" data-toggle=\"modal\" data-edit_id=\"".$fruit['id']." \" href='#edit?id=".$fruit["id"]."' data-target=\"#edit\" style='margin-right: 1rem'>Edit</button>";
+
                 echo "<a href='/about/deleteAction?name=".$fruit["name"]."' role='button' class=\"btn btn-danger\">Delete</a><br></td>";
                 echo "</tr>";
-
-
             }
 
         ?>
         </table>
     </div>
+
+
+    <?php
+    if(isset($_POST['ok'])){
+        echo $_POST['f_id'];
+        echo $_POST['f_name'];
+    }
+    ?>
 
 </div><!-- /.container  -->
 
@@ -71,7 +85,7 @@
 <!-- Modal Starts Here -->
 
 
-<div class="modal hide fade edit" id="edit<?php $fruit["name"]  ?>" tabindex="-1" role="dialog" aria-labelledby="exampleModalLongTitle" aria-hidden="true">&times;
+<div class="modal hide fade edit" id="edit<?php $fruit["id"]  ?>" tabindex="-1" role="dialog" aria-labelledby="exampleModalLongTitle" aria-hidden="true">&times;
             <div class="modal-dialog" role="document">
                 <div class="modal-content">
                     <div class="modal-header">
@@ -84,21 +98,13 @@
                     <div class="container">
 
                         <div class="starter-template">
-
                             <h1>Edit Fruit</h1>
 
-
-
                             <form action="/about/updateAction" method="POST">
-
-                                <input type="hidden" name="id" id="id" value="<?php echo $fruit['id']; ?>" />
-
-
-                                <input type="text" name="newName" id="name" value="<?php echo $fruit['name']; ?>" />
+                                <input type="text" name="id" id="id" value="" />
+                                <input type="text" name="name" id="name" value="" />
 
                                 <input type="submit" />
-
-
                             </form>
 
                         </div>
@@ -110,38 +116,4 @@
                 </div>
             </div>
             </div>
-</div>
-
-
-
-<div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
-    <div class="modal-dialog" role="document">
-        <div class="modal-content">
-            <div class="modal-header">
-                <h5 class="modal-title" id="exampleModalLabel">New message</h5>
-                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                    <span aria-hidden="true">&times;</span>
-                </button>
-            </div>
-            <div class="modal-body">
-
-                <h1>Edit Fruit</h1>
-
-                <form action="/about/updateAction" method="POST">
-
-                    <input type="hidden" name="id" id="id" />
-
-
-                    <input type="text" name="newName" id="newName" />
-
-                    <button type="submit" class="btn btn-primary">Submit</button>
-
-
-                </form>
-            </div>
-            <div class="modal-footer">
-                <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancel</button>
-            </div>
-        </div>
-    </div>
 </div>

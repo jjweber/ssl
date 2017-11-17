@@ -6,6 +6,13 @@ class about extends AppController{
     {
         $this->parent = $parent;
 
+        // echo "<br>HERE";
+
+        if(isset($_POST["id"])) {
+            $id = $_POST["id"];
+            // echo "<br>ID: $id<br>";
+        }
+
         $this->showList();
     }
 
@@ -27,24 +34,11 @@ class about extends AppController{
 
     public function showList()
     {
-
         $data = $this->parent->getModel("fruits")->select("select * from fruit_table");
         $this->getNav( "about" );
         $this->getView("about", $data);
         $this->getView("footer");
-
     }
-
-
-/*
-    public function showAddForm()
-    {
-        $this->getNav( "about" );
-        $this->getView("addForm");
-        //$this->getView("footer");
-
-    }
-*/
 
     public function addAction()
     {
@@ -54,15 +48,6 @@ class about extends AppController{
 
     }
 
-/*
-    public function showUpdateModel() {
-
-        $this->getNav( "about" );
-        $this->getView("deleteForm");
-        //$this->getView("footer");
-    }
-*/
-
     public function deleteAction() {
 
         $itemName = $_GET["name"];
@@ -71,12 +56,35 @@ class about extends AppController{
         header("Location:/about");
     }
 
+    /*
+        public function showUpdateModel() {
+
+            $this->getNav( "about" );
+            $this->getView("deleteForm");
+            //$this->getView("footer");
+        }
+    */
 
     public function updateAction() {
-
-
-        $itemName = $_REQUEST["newName"];
+        $itemName = $_REQUEST["name"];
         $itemId = $_REQUEST["id"];
+
+        $this->parent->getModel("fruits")->update("UPDATE fruit_table SET name = :newName WHERE id= :id", array(":newName"=> $itemName, ":id"=> $itemId));
+        header("Location:/about");
+    }
+
+
+
+
+
+    public function updateAction2() {
+
+        //$itemId=$_POST['id'];
+        //$itemName=$_POST['value'];
+        //edit_ajax($itemId,$itemName);
+
+        $itemId = $_POST['id_val'];
+        $itemName = $_POST['name_val'];
 
 
         $this->parent->getModel("fruits")->update("UPDATE fruit_table SET name = :newName WHERE id= :id", array(":newName"=> $itemName, ":id"=> $itemId));

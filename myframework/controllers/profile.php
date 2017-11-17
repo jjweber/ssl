@@ -11,14 +11,8 @@ class profile extends AppController{
     }
 
     public function index() {
-        $menuItems = array(
-            "greetingPage" => "Home",
-            "api" => "Api",
-            "gallery" => "Gallery",
-            "about" => "About", 
-            "contact" => "Contact" 
-        );      
-        $this->getView("navigation", $menuItems, array( "pagename" => "profile" ));
+
+        $this->getNav("profile");
         $this->getView("profile");
         $this->getView("footer");        
     }

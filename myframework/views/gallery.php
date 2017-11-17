@@ -1,79 +1,122 @@
-<div id="mainBody" class="container">
-
-
-<!-- Jumbotron Starts Here -->
-<div class="jumbotron">
-        <h1>Gallery</h1>
-        <p>This example is a quick exercise to illustrate how the default, static navbar and fixed to top navbar work. It includes the responsive CSS and HTML, so it also adapts to your viewport and device.</p>
-        <p>
-<!-- Button trigger modal -->
-        <button type="button" class="btn btn-lg btn-primary" data-toggle="modal" data-target="#exampleModalLong">
-            Open Modal &raquo;
-        </button>
-        </p>
-    </div>
-
-
-<!-- Body Carousel Starts Here -->
-<div id="bodyCarousel" class="carousel slide" data-ride="carousel">
-        <ol class="carousel-indicators">
-            <li data-target="#bodyCarousel" data-slide-to="0" class="active"></li>
-            <li data-target="#bodyCarousel" data-slide-to="1"></li>
-            <li data-target="#bodyCarousel" data-slide-to="2"></li>
-            <li data-target="#bodyCarousel" data-slide-to="3"></li>
-        </ol>
-        <div class="carousel-inner">
-            
-
-        <div class="carousel-item active">
-            <img class="d-block w-100" src="/assets/images/city-lights.jpeg" alt="First slide">
-        </div>
-        <div class="carousel-item">
-            <img class="d-block w-100" src="/assets/images/italy-sceen.jpeg" alt="Second slide">
-        </div>
-        <div class="carousel-item">
-            <img class="d-block w-100" src="/assets/images/ocean-view.jpeg" alt="Third slide">
-        </div>
-        <div class="carousel-item">
-            <img class="d-block w-100" src="/assets/images/sunset-over-mountains.jpeg" alt="Forth slide">
-        </div>
-
-
-        </div>
-        <a class="carousel-control-prev" href="#bodyCarousel" role="button" data-slide="prev">
-            <span class="carousel-control-prev-icon" aria-hidden="true"></span>
-            <span class="sr-only">Previous</span>
-        </a>
-        <a class="carousel-control-next" href="#bodyCarousel" role="button" data-slide="next">
-            <span class="carousel-control-next-icon" aria-hidden="true"></span>
-            <span class="sr-only">Next</span>
-        </a>
-    </div>
-
-</div> <!-- /container end -->
-
-
-<!-- Modal Starts Here -->
-<div class="modal fade" id="exampleModalLong" tabindex="-1" role="dialog" aria-labelledby="exampleModalLongTitle" aria-hidden="true">
-    <div class="modal-dialog" role="document">
-        <div class="modal-content">
-            <div class="modal-header">
-                <h5 class="modal-title" id="exampleModalLongTitle">Modal title</h5>
-                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                    <span aria-hidden="true">&times;</span>
-                </button>
+<div id="searchContainer" class="">
+    <div id="searchBox">
+        <form id="searchForm">
+            <div id="inputContainer">
+                <div id="inputInners">
+                    <input type="text" id="videoSearch" name="videoSearch" placeholder="Search for Something..." />
+                </div>
             </div>
-            <div class="modal-body">
-                <h5>Popover in a modal</h5>
-                <p>This <a href="#" role="button" class="btn btn-secondary popover-test" data-toggle="popover" title="Popover title" data-content="Popover body content is set in this attribute.">button</a> triggers a popover on click.</p>
-                <hr>
-                <h5>Tooltips in a modal</h5>
-                <p><a href="#" class="tooltip-test" data-toggle="tooltip" title="Tooltip">This link</a> and <a href="#" class="tooltip-test" data-toggle="tooltip" title="Tooltip">that link</a> have tooltips on hover.</p>
-            </div>
-            <div class="modal-footer">
-                <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-                <button type="button" class="btn btn-primary">Save changes</button>
-            </div>                                              
-        </div>
+            <button id="searchBtn" class="btn btn-primary">Search</button>
+        </form>
     </div>
 </div>
+<div id="ytContainer" class="container" >
+
+    <div id="contentContainer" class="row">
+
+        <div id="mainVideoContent" class="col-xs-12 col-sm-8 col-md-8 video-container">
+            <div id="playerContainer">
+
+            <iframe id="featuredVideo" src="https://www.youtube.com/embed/<?php echo $data->items[0]->id->videoId; ?>" frameborder="0" allowfullscreen=""></iframe>
+
+            </div>
+        </div>
+
+
+        <div id="sidebar" class="col-xs-12 col-sm-4 col-md-6 "><div>
+
+                <ul id="relatedVideos" style="padding: 0px">
+                    <?php
+
+                    foreach ($data->items as $video) {
+                        $title = $video->snippet->title;
+                        $description = $video->snippet->description;
+                        $thumbnail = $video->snippet->thumbnails->high->url;
+                        $videoId = $video->id->videoId;
+                        $date = $video->snippet->publishedAt;
+                        $channelTitle = $video->snippet->channelTitle;
+                    ?>
+
+
+
+                    <li id="individualVideo" style="list-style-type: none; margin-bottom: 10px; background-color: #FFF">
+                        <div id="indivVideoContent" class="container">
+                            <span style="cursor: pointer; margin-bottom: 10px" onclick="switchVideo('<?php echo $videoId; ?>');">
+                                <div class="row" id="vid_<?php echo $videoId; ?>" style="padding: 8px; border-bottom: 1px solid #FFF;">
+                                    <div id="thumbnailContainer" class="image col-md-4 col-lg-4">
+                                        <a id="thumbnailLink">
+                                            <div id="thumbnail">
+                                                <img id="videoImg" src="https://i.ytimg.com/vi/<?php echo $videoId; ?>/default.jpg">
+                                            </div>
+                                        </a>
+                                    </div>
+                                    <div id="descriptionContent" class="container text col-md-7 col-lg-7">
+
+                                        <h3 id="videoTitle">
+                                            <span id="nameOfVideo"><?php echo $title; ?></span>
+                                        </h3>
+                                        <div id="metaContainer">
+                                            <div id="channelContent">
+                                                <div id="channelContentInners">
+                                                    <p id="nameOfChannel" class="date"><?php echo $channelTitle; ?></p>
+                                                </div>
+                                                <div id="separator" class="style-scope ytd-video-meta-block">•</div>
+                                                <h3 id="viewsContent">
+                                                    <span id="viewsText"><?php echo "Hello"; ?></span>
+                                                </h3>
+                                                <div id="dateContent">
+                                                    <span id="dateOfPost">
+                                                        <?php echo date('M j, Y', strtotime($date)); ?>
+                                                    </span>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </span>
+                        </div>
+                    </li>
+
+                    <?php } ?>
+
+
+                </ul>
+            </div>
+
+
+    </div>
+
+
+</div><!--  /.container  -->
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<?php
+
+/*
+foreach($videoList->items as $item){
+    //Embed video
+    if(isset($item->id->videoId)){
+        echo '<div class="youtube-video">
+                <iframe width="100%" height="450px" src="https://www.youtube.com/embed/'.$item->id->videoId.'" frameborder="0" allowfullscreen></iframe>
+                <h2 style="font-size: 16px">'. $item->snippet->title .'</h2>
+                <h2 >'.$item->snippet->channelId.'</h2>
+
+
+            </div>';
+    }
+}
+
+*/
+?>

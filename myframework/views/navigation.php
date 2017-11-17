@@ -47,6 +47,10 @@
                         // Check if page is equal to about. if match go to about controller
                         if ( $x == 'about') {
                             echo "/about";
+                        } elseif ( $x == 'api' ) {
+                            echo "/api/showApi";
+                        } elseif ( $x == 'gallery' ) {
+                            echo "/galleryApi/showYouTubeApi";
                         } else {
                             echo "/controller/$x";
                         }

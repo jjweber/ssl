@@ -10,19 +10,6 @@ class controller extends AppController{
         }
     }
 
-    public function getNav( $pagename, $data = array() )
-    {
-        $menuItems = array(
-            "greetingPage" => "Home",
-            "api" => "Api",
-            "gallery" => "Gallery",
-            "about" => "About", 
-            "contact" => "Contact" 
-        );
-
-        $this->getView( "navigation", $menuItems, array( "pagename" => "$pagename" ));
-    }
-  
     public function greetingPage() {
         
         $this->getNav( "greetingPage" );
