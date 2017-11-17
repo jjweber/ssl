@@ -10,8 +10,10 @@ class users {
     public function select($sql, $value=array())
     {
         $this->sql = $this->db->prepare($sql);
+
         $result = $this->sql->execute($value);
         $data = $this->sql->fetchAll();
+
         return $data;
     }
 
@@ -19,7 +21,6 @@ class users {
     {
         $this->sql = $this->db->prepare($sql);
         $result = $this->sql->execute($value);
-
     }
 
 }

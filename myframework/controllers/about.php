@@ -42,10 +42,8 @@ class about extends AppController{
 
     public function addAction()
     {
-
-    $this->parent->getModel("fruits")->add("insert into fruit_table (name) values (:name)", array(":name"=>$_REQUEST["name"]));
-    header("Location:/about");
-
+        $this->parent->getModel("fruits")->add("insert into fruit_table (name) values (:name)", array(":name"=>$_REQUEST["name"]));
+        header("Location:/about");
     }
 
     public function deleteAction() {
