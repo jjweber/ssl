@@ -1,12 +1,12 @@
 <div id="searchContainer" class="">
     <div id="searchBox">
-        <form id="searchForm">
+        <form id="searchForm" action="/galleryApi/newSearchQuery">
             <div id="inputContainer">
                 <div id="inputInners">
                     <input type="text" id="videoSearch" name="videoSearch" placeholder="Search for Something..." />
                 </div>
             </div>
-            <button id="searchBtn" class="btn btn-primary">Search</button>
+            <button id="searchBtn" name="searchBtn" class="btn btn-primary">Search</button>
         </form>
     </div>
 </div>

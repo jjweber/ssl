@@ -16,6 +16,15 @@ class galleryApi extends AppController {
         $this->getView("footer");
     }
 
+    public function newSearchQuery() {
+        $query = $_REQUEST["videoSearch"];
+
+        $this->getNav("gallery");
+        $data = $this->parent->getModel("youTubeApi")->youTubeSearch($query);
+        $this->getView("gallery", $data);
+        $this->getView("footer");
+    }
+
 
 }
 
