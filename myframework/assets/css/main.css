@@ -179,11 +179,11 @@ h1{
 }
 
 #ytContainer {
-    background: pink;
+    /*background: pink;*/
 }
 
 #contentContainer {
-    background: yellow;
+    /*background: yellow;*/
     margin: 0 auto 50px auto;
     padding-top: 1rem;
     width: 1066px;
@@ -211,7 +211,7 @@ h1{
 }
 
 #sidebar {
-    background: orange;
+    /*background: orange;*/
 
     float: right;
     position: relative;

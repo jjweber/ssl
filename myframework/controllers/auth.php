@@ -24,6 +24,7 @@ class auth extends AppController{
             if($data) {
                 $_SESSION[ "loggedin" ] = 1;
                 $_SESSION[ 'uname' ] = $_REQUEST[ "username" ];
+                $_SESSION[ 'uPass' ] = $_REQUEST[ "password" ];
 
                 header( "Location: /controller/greetingPage" );
             } else {
